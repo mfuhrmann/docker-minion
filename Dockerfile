@@ -2,7 +2,7 @@ FROM opennms/openjdk:8u151-jdk
 
 LABEL maintainer "Ronny Trommer <ronny@opennms.org>"
 
-ARG MINION_VERSION=develop
+ARG MINION_VERSION=branches/features/drift
 
 ENV MINION_HOME /opt/minion
 ENV MINION_LOCATION MINION
@@ -12,7 +12,7 @@ ENV OPENNMS_BROKER_URL tcp://127.0.0.1:61616
 ENV OPENNMS_HTTP_URL http://127.0.0.1:8980/opennms
 
 RUN yum -y --setopt=tsflags=nodocs update && \
-    rpm -Uvh http://yum.opennms.org/repofiles/opennms-repo-${MINION_VERSION}-rhel7.noarch.rpm && \
+    rpm -Uvh http://yum.opennms.org/repofiles/opennms-repo-branches-features-drift-rhel7.noarch.rpm && \
     rpm --import http://yum.opennms.org/OPENNMS-GPG-KEY && \
     yum -y install opennms-minion && \
     yum clean all && \
